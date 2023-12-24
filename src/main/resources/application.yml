@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri:
+
+granite:
+  app:
+    jwtSecret:
+
