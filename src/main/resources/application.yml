@@ -8,3 +8,5 @@ granite:
   app:
     jwtSecret: ${JWT_SECRET}
 
+server:
+  port: ${PORT:5000}
