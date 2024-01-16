@@ -15,7 +15,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public Mono<User> registerUser(@RequestBody User user) {
+    public Mono<String> registerUser(@RequestBody User user) {
         return userService.registerUser(user);
     }
 
