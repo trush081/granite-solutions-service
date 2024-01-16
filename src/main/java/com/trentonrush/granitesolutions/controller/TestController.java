@@ -15,12 +15,6 @@ public class TestController {
         this.userService = userService;
     }
 
-    // TODO make below
-//    @PostMapping("/register")
-//    public Mono<Customer> registerUser(@RequestBody Customer customer) {
-//        return customerService.registerUser(customer);
-//    }
-
     @GetMapping("/test")
     public Mono<String> loginUser() {
         return Mono.just("Test");

@@ -2,6 +2,8 @@ package com.trentonrush.granitesolutions.controller;
 
 import com.trentonrush.granitesolutions.entity.User;
 import com.trentonrush.granitesolutions.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -15,8 +17,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public Mono<User> registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+    public Mono<ResponseEntity<String>> registerUser(@RequestBody User user) {
+        return userService.registerUser(user)
+                .map(savedUser -> ResponseEntity.ok("User registered successfully"))
+                .onErrorResume(error -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage())));
     }
 
     @GetMapping("/login")

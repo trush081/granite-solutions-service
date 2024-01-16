@@ -29,12 +29,12 @@ public class UserService implements ReactiveUserDetailsService {
     }
 
     public Mono<User> registerUser(User user) {
-        return userRepository.findByUsername(user.getUsername())
-                .flatMap(existingCustomer -> {
-                    if (existingCustomer != null) {
-                        // TODO: Just throw this temp Fix this
+        return userRepository.existsByUsername(user.getUsername())
+                .flatMap(doesExist -> {
+                    if (Boolean.TRUE.equals(doesExist)) {
                         return Mono.error(new RuntimeException("User already exists!"));
                     } else {
+                        // Encode password and save the user
                         user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
                         return userRepository.save(user);
                     }
