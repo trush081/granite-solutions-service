@@ -34,6 +34,7 @@ tasks.named('test') {
 
 jar {
 	manifest {
-		attributes["Main-Class"] = "com.trentonrush.granitesolutions"
+		attributes 'Main-Class': 'com.trentonrush.granitesolutions.GraniteSolutionsApplication'
 	}
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
