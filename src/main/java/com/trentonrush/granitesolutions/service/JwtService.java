@@ -18,12 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    // TODO fix this reference...didnt have time to make it better...needed to get key out
-    private static ApplicationConfig applicationConfig;
-
-    public JwtService(ApplicationConfig applicationConfig) {
-        this.applicationConfig = applicationConfig;
-    }
+    ApplicationConfig applicationConfig;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

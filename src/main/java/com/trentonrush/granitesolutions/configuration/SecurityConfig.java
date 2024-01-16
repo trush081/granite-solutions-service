@@ -42,13 +42,13 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain basicWebFilterChain(ServerHttpSecurity http, BasicAuthenticationWebFilter basicAuthenticationWebFilter) {
         return http
+                .securityMatcher(new PathPatternParserServerWebExchangeMatcher("/auth/**"))
                 .authorizeExchange(exchanges ->
                         exchanges
                                 .pathMatchers("/auth/**").permitAll()
                 )
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
-                .addFilterAt(basicAuthenticationWebFilter, SecurityWebFiltersOrder.HTTP_BASIC)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .build();
     }
@@ -58,7 +58,8 @@ public class SecurityConfig {
     public SecurityWebFilterChain bearerWebFilterChain(ServerHttpSecurity http, JwtAuthenticationWebFilter jwtAuthenticationWebFilter) {
         return http
                 .securityMatcher(new PathPatternParserServerWebExchangeMatcher("/api/**"))
-                .authorizeExchange(exchanges -> exchanges.anyExchange().authenticated())
+                .authorizeExchange(exchanges -> exchanges
+                        .anyExchange().authenticated())
 //                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
 //                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .addFilterAt(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)

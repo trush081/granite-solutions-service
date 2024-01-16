@@ -1,9 +1,10 @@
 spring:
   data:
+    origins: "https://granite-solutions.trentonrush.com"
     mongodb:
-      uri:
+      uri: ${MONGO_URI}
 
 granite:
   app:
-    jwtSecret:
+    jwtSecret: ${JWT_SECRET}
 
