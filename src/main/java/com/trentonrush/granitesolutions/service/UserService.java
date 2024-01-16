@@ -32,6 +32,7 @@ public class UserService implements ReactiveUserDetailsService {
         return userRepository.findByUsername(user.getUsername())
                 .flatMap(existingCustomer -> {
                     if (existingCustomer != null) {
+                        // TODO: Just throw this temp Fix this
                         return Mono.error(new RuntimeException("User already exists!"));
                     } else {
                         user.setRole(Role.ROLE_USER);
