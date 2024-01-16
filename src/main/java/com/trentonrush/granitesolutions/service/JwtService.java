@@ -20,6 +20,10 @@ public class JwtService {
 
     ApplicationConfig applicationConfig;
 
+    public JwtService(ApplicationConfig applicationConfig) {
+        this.applicationConfig = applicationConfig;
+    }
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
