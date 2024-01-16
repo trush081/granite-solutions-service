@@ -21,8 +21,13 @@ public class WebConfig implements WebFluxConfigurer {
                 .allowedOrigins(allowedOrigins)
                 .allowedHeaders(
                         HttpHeaders.ACCEPT,
+                        HttpHeaders.ACCEPT_ENCODING,
+                        HttpHeaders.ACCEPT_LANGUAGE,
                         HttpHeaders.AUTHORIZATION,
-                        HttpHeaders.CONTENT_TYPE)
+                        HttpHeaders.CONTENT_TYPE,
+                        HttpHeaders.ORIGIN,
+                        HttpHeaders.REFERER,
+                        HttpHeaders.USER_AGENT)
                 .allowedMethods(
                         HttpMethod.POST.name(),
                         HttpMethod.GET.name())
