@@ -35,7 +35,6 @@ public class UserService implements ReactiveUserDetailsService {
                         // TODO: Just throw this temp Fix this
                         return Mono.error(new RuntimeException("User already exists!"));
                     } else {
-                        user.setRole(Role.ROLE_USER);
                         user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
                         return userRepository.save(user);
                     }
