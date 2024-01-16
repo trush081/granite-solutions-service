@@ -28,7 +28,7 @@ public class UserService implements ReactiveUserDetailsService {
                 .switchIfEmpty(Mono.error(new UsernameNotFoundException("User not found")));
     }
 
-    public Mono<String> registerUser(User user) {
+    public Mono<User> registerUser(User user) {
         return userRepository.findByUsername(user.getUsername())
                 .flatMap(existingCustomer -> {
                     if (existingCustomer != null) {
@@ -37,8 +37,7 @@ public class UserService implements ReactiveUserDetailsService {
                     } else {
                         user.setRole(Role.ROLE_USER);
                         user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
-                        userRepository.save(user);
-                        return Mono.just("Successfully Signed Up");
+                        return userRepository.save(user);
                     }
                 });
     }
