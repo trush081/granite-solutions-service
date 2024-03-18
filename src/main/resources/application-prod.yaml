@@ -1,0 +1,4 @@
+spring:
+  data:
+    frontend: "https://granite-solutions.trentonrush.com"
+    strapi: "https://strapi.trentonronrush.com"

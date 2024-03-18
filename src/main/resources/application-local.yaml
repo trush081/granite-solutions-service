@@ -1,0 +1,4 @@
+spring:
+  data:
+    frontend: "http://localhost:3000"
+    strapi: "http://localhost:1337"

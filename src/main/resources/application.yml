@@ -1,12 +1,13 @@
 spring:
   data:
-    origins: "https://granite-solutions.trentonrush.com"
     mongodb:
       uri: ${MONGO_URI}
 
 granite:
   app:
     jwtSecret: ${JWT_SECRET}
+    stripeSecretKey: ${STRIPE_SECRET_KEY}
 
 server:
   port: ${PORT:5000}
+
